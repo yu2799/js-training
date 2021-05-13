@@ -4,13 +4,20 @@ import Chart from "../../components/Chart04";
 import instruction from "./instruction.md";
 
 const convertData = (input) => {
-  const species = Array.from(new Set(input.map(({ species }) => species))) // speciesの集合を作る
+  // const species = Array.from(new Set(input.map(({ species }) => species))); // speciesの集合を作る
+  const species = [];
+
+  for (const a of input) {
+    if (!species.includes(a.species)) {
+      species.push(a.species);
+    }
+  }
   return species.map((species) => {
     return {
       id: species,
       data: input
-      .filter((item) => item.species === species)
-      .map(({ sepalLength: x, sepalWidth: y}) => ({x, y})),
+        .filter((item) => item.species === species)
+        .map(({ sepalLength: x, sepalWidth: y }) => ({ x, y })),
     };
   });
 };

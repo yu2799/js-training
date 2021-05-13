@@ -4,8 +4,13 @@ import Chart from "../../components/Chart02";
 import instruction from "./instruction.md";
 
 const convertData = (input) => {
+  const output = [];
   input.sort((item1, item2) => item2.count - item1.count);
-  return input.slice(0, 20);
+  // return input.slice(0, 20);
+  for (let i = 0; i < 20; i++) {
+    output.push(input[i]);
+  }
+  return output;
 };
 
 /*
